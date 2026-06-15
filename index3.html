@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UKR I – Formulary</title>
+    <link rel="stylesheet" href="styles3.css" />
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="nav-logo">UKR I</div>
+      <a href="index2.html" class="nav-link">back ↙</a>
+    </nav>
+
+    <!-- TITRE -->
+    <section class="form-header">
+      <h1 class="form-title">FORMULARY</h1>
+    </section>
+
+    <!-- LAYOUT 3 COLONNES -->
+    <div class="layout">
+      <!-- COLONNE GAUCHE -->
+      <div class="col-gauche"></div>
+
+      <!-- COLONNE MILIEU -->
+      <div class="col-milieu">
+        <p class="col-label">form</p>
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <in
+            type="hidden"
+            name="access_key"
+            value="029a6be8-8a2e-4df5-8e8f-1fcd69878d63"
+          />
+          <input
+            type="hidden"
+            name="subject"
+            value="New community member - UKR I"
+          />
+          <input type="checkbox" name="botcheck" style="display: none" />
+
+          <!-- Informations personnelles -->
+          <h2 class="section-titre">personal informations</h2>
+
+          <label class="champ-label" for="name">name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="champ-input"
+            required
+          />
+
+          <label class="champ-label" for="first_name">first name</label>
+          <input
+            type="text"
+            id="first_name"
+            name="first_name"
+            class="champ-input"
+            required
+          />
+
+          <label class="champ-label" for="age">age</label>
+          <input type="number" id="age" name="age" class="champ-input" />
+
+          <label class="champ-label" for="email">email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="champ-input"
+            required
+          />
+
+          <!-- Profil -->
+          <p class="section-titre">your profil</p>
+
+          <label class="champ-label" for="pseudo">pseudo</label>
+          <input type="text" id="pseudo" name="pseudo" class="champ-input" />
+
+          <label class="champ-label" for="bio">bio</label>
+          <textarea
+            id="bio"
+            name="bio"
+            class="champ-input champ-textarea"
+            rows="3"
+          ></textarea>
+
+          <!-- Updates -->
+          <p class="section-titre">
+            Where would you like to receive our updates?
+          </p>
+
+          <div class="checkbox-ligne">
+            <input
+              type="checkbox"
+              id="update_email"
+              name="updates"
+              value="email address"
+              class="checkbox"
+            />
+            <label class="checkbox-label" for="update_email"
+              >email address</label
+            >
+          </div>
+
+          <div class="checkbox-ligne">
+            <input
+              type="checkbox"
+              id="update_mail"
+              name="updates"
+              value="mailing address"
+              class="checkbox"
+            />
+            <label class="checkbox-label" for="update_mail"
+              >mailing address</label
+            >
+          </div>
+
+          <!-- Terms -->
+          <p class="section-titre">
+            Do you agree to our website's terms of use and privacy policy?
+          </p>
+
+          <div class="checkbox-ligne">
+            <input
+              type="checkbox"
+              id="terms"
+              name="terms"
+              value="yes"
+              class="checkbox"
+              required
+            />
+            <label class="checkbox-label" for="terms">yes</label>
+          </div>
+
+          <!-- Submit -->
+          <div class="submit-zone">
+            <button type="submit" class="submit-btn">submit</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- COLONNE DROITE -->
+      <div class="col-droite">
+        <p class="col-label">Summary of your<br />information</p>
+
+        <dl class="summary">
+          <div class="summary-row">
+            <dt>name</dt>
+            <dd id="sum-name">—</dd>
+          </div>
+          <div class="summary-row">
+            <dt>first name</dt>
+            <dd id="sum-first_name">—</dd>
+          </div>
+          <div class="summary-row">
+            <dt>age</dt>
+            <dd id="sum-age">—</dd>
+          </div>
+          <div class="summary-row">
+            <dt>email</dt>
+            <dd id="sum-email">—</dd>
+          </div>
+          <div class="summary-row">
+            <dt>pseudo</dt>
+            <dd id="sum-pseudo">—</dd>
+          </div>
+          <div class="summary-row">
+            <dt>bio</dt>
+            <dd id="sum-bio">—</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <script src="script3.js"></script>
+  </body>
+</html>

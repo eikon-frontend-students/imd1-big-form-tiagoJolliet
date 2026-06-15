@@ -1,0 +1,293 @@
+/* =========================
+   RESET
+   Supprime tous les marges et paddings
+   que les navigateurs ajoutent par défaut
+========================= */
+
+* {
+  margin: 0; /* Supprime l'espace EXTÉRIEUR de chaque élément */
+  padding: 0; /* Supprime l'espace INTÉRIEUR de chaque élément */
+  box-sizing: border-box; /* Le padding et la bordure sont INCLUS dans la largeur.
+                             Ex: width:50% + padding:30px = ça reste 50%, pas plus */
+}
+
+body {
+  background: #e7e7e7; /* Couleur de fond grise pour toute la page */
+  color: rgb(0, 0, 0); /* Couleur du texte : noir */
+  font-family: Arial, Helvetica, sans-serif; /* Police de caractères */
+  min-height: 100vh; /* Le body fait au minimum 100% de la hauteur
+                                               de l'écran (vh = viewport height) */
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav {
+  display: flex; /* Les enfants (logo + lien) se placent CÔTE À CÔTE */
+  justify-content: space-between; /* Logo à gauche, lien à droite, espace max entre eux */
+  align-items: flex-start; /* Aligne les éléments en HAUT de la nav */
+}
+
+.nav-logo {
+  width: 80px; /* Largeur fixe du bloc logo */
+  height: 130px; /* Hauteur fixe du bloc logo */
+
+  writing-mode: vertical-rl; /* Fait tourner le texte à 90° : il s'écrit de HAUT EN BAS */
+  text-orientation: mixed; /* Les lettres restent dans leur sens normal malgré la rotation */
+
+  display: flex; /* Flexbox pour centrer le texte dans le bloc */
+  justify-content: flex-start; /* Texte en haut verticalement */
+  align-items: center; /* Texte centré horizontalement */
+
+  border-right: 1px solid rgb(0, 0, 0); /* Ligne verticale à droite du logo,
+                                            sert de séparateur visuel */
+
+  font-size: 18px; /* Taille du texte "UKR I" */
+  letter-spacing: 2px; /* Espace entre les lettres */
+}
+
+.nav-link {
+  color: rgb(0, 0, 0); /* Couleur du lien : noir */
+  text-decoration: none; /* Supprime le soulignement du lien */
+  padding: 20px; /* Espace intérieur autour du texte du lien */
+  font-size: 16px; /* Taille du texte du lien */
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  border-bottom: 1px solid rgb(0, 0, 0); /* Ligne horizontale EN BAS de la section hero */
+  border-top: 1px solid rgb(0, 0, 0); /* Ligne horizontale EN HAUT de la section hero */
+  padding-left: 80px; /* Décale le contenu de 80px à gauche — exactement la largeur
+                         du logo, pour que le titre s'aligne juste après lui */
+}
+
+.hero-title {
+  border-left: 1px solid rgb(0, 0, 0); /* Petite ligne verticale à gauche du titre */
+
+  padding-left: 20px; /* Espace entre la ligne et le texte */
+  padding-top: 10px; /* Espace au-dessus du texte */
+  padding-bottom: 20px; /* Espace en-dessous du texte */
+
+  /* clamp(MIN, IDEAL, MAX) : propriété responsive magique !
+     - Le titre fait MINIMUM 3rem (jamais plus petit)
+     - IDÉALEMENT 10% de la largeur de l'écran (10vw)
+     - MAXIMUM 8rem (jamais plus grand)
+     Résultat : le texte grandit/rétrécit automatiquement avec l'écran */
+  font-size: clamp(3rem, 10vw, 8rem);
+
+  font-weight: 300; /* Police fine/légère malgré la grande taille */
+  line-height: 0.9; /* Hauteur de ligne à 90% : les deux lignes sont très serrées,
+                       effet typographique voulu */
+}
+
+/* =========================
+   SECTION CENTRALE
+========================= */
+
+.grille {
+  display: flex; /* Les colonnes se placent CÔTE À CÔTE */
+  flex-wrap: wrap; /* Si les colonnes n'ont plus assez de place,
+                          elles passent à la ligne automatiquement.
+                          C'est la clé du responsive sur cette section ! */
+  border-bottom: 1px solid rgb(0, 0, 0); /* Ligne horizontale sous la grille */
+}
+
+.colonne {
+  display: flex; /* Les cellules à l'intérieur s'organisent en flex */
+  flex-direction: column; /* Les cellules s'empilent de HAUT EN BAS */
+  width: 50%; /* Chaque colonne = moitié de la largeur totale.
+                              Sur mobile, ça passera à 100% via media query */
+}
+
+/* Cellule carrée grâce à aspect-ratio */
+.cellule {
+  width: 100%; /* La cellule prend toute la largeur de sa colonne */
+  aspect-ratio: 1 / 1; /* Force la cellule à être CARRÉE : hauteur = largeur.
+                            Quand la largeur change avec l'écran, la hauteur suit ! */
+  display: flex;
+  justify-content: center; /* Centre le contenu HORIZONTALEMENT */
+  align-items: center; /* Centre le contenu VERTICALEMENT */
+  padding: 30px; /* Espace intérieur autour du contenu */
+  border: 1px solid rgb(0, 0, 0); /* Bordure noire autour de chaque cellule */
+}
+
+/* =========================
+   JAUNE
+========================= */
+
+.cellule-jaune {
+  background: #ffe500; /* Fond jaune vif */
+}
+
+.click-link {
+  color: black; /* Texte noir */
+  font-size: 20px; /* Taille du texte */
+  text-decoration: underline; /* Soulignement du lien */
+}
+
+/* =========================
+   BLEU
+========================= */
+
+.cellule-bleue {
+  background: #1754ad; /* Fond bleu foncé */
+  color: white; /* Texte blanc (sinon illisible sur fond bleu) */
+
+  flex-direction: column; /* Titre et texte s'empilent verticalement */
+  align-items: flex-start; /* Contenu aligné à GAUCHE */
+  justify-content: flex-start; /* Contenu commence en HAUT */
+  gap: 40px; /* Espace de 40px entre le titre et le paragraphe */
+  padding: 30px; /* Espace intérieur */
+  overflow: hidden; /* Cache ce qui dépasse des bords de la cellule */
+}
+
+.blue-titre {
+  /* clamp(MIN, IDEAL, MAX) :
+     Minimum 12px, idéalement 2.5% de la largeur d'écran, maximum 28px */
+  font-size: clamp(12px, 2.5vw, 28px);
+  font-weight: 400; /* Police normale (pas gras) */
+}
+
+.blue-texte {
+  /* clamp(MIN, IDEAL, MAX) :
+     Minimum 10px, idéalement 1.8% de la largeur d'écran, maximum 18px */
+  font-size: clamp(10px, 1.8vw, 18px);
+  line-height: 1.5; /* Hauteur de ligne : 1.5x la taille de la police,
+                       rend le texte plus lisible */
+}
+
+/* =========================
+   PHOTOS
+========================= */
+
+.photo {
+  width: 55%; /* L'image prend 55% de la largeur de la cellule */
+  height: 70%; /* L'image prend 70% de la hauteur de la cellule */
+  object-fit: cover; /* L'image remplit son espace SANS se déformer :
+                          elle est rognée si besoin pour garder ses proportions */
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+  height: 200px; /* Hauteur fixe du footer */
+  display: flex;
+  justify-content: center; /* Texte centré horizontalement */
+  align-items: flex-end; /* Texte collé en BAS du footer */
+}
+
+.footer-texte {
+  font-size: 18px;
+  margin-bottom: 50px; /* Espace entre le texte et le bas du footer */
+}
+
+/* =========================
+   RESPONSIVE — TABLETTE
+   Ces règles s'activent quand l'écran
+   est plus petit que 768px
+========================= */
+
+@media (max-width: 768px) {
+  .nav-logo {
+    width: 60px; /* Logo plus petit sur tablette */
+    height: 100px;
+    font-size: 15px;
+  }
+
+  .hero {
+    padding-left: 60px; /* Réduit pour correspondre à la nouvelle largeur du logo */
+  }
+
+  .colonne {
+    width: 50%; /* Les colonnes restent côte à côte sur tablette */
+  }
+
+  .cellule {
+    aspect-ratio: 1 / 1; /* Cellules toujours carrées */
+    padding: 20px; /* Un peu moins de padding */
+  }
+
+  .cellule-bleue {
+    gap: 20px; /* Moins d'espace entre titre et texte */
+  }
+}
+
+/* =========================
+   RESPONSIVE — MOBILE
+   Ces règles s'activent quand l'écran
+   est plus petit que 480px (smartphone)
+   Ordre d'affichage voulu : jaune → img1 → bleu → img2
+========================= */
+
+@media (max-width: 480px) {
+  .nav-logo {
+    width: 50px; /* Logo encore plus petit sur mobile */
+    height: 90px;
+    font-size: 13px;
+  }
+
+  .nav-link {
+    padding: 15px; /* Moins de padding autour du lien */
+    font-size: 14px;
+  }
+
+  .hero {
+    padding-left: 50px; /* Correspond à la largeur réduite du logo */
+  }
+
+  .hero-title {
+    padding-left: 15px;
+    padding-bottom: 15px;
+  }
+
+  .grille {
+    flex-direction: column; /* Les colonnes s'empilent VERTICALEMENT sur mobile */
+  }
+
+  .colonne {
+    width: 100%; /* Chaque colonne prend toute la largeur de l'écran */
+    flex-direction: row; /* Les cellules à l'intérieur se remettent CÔTE À CÔTE */
+    flex-wrap: wrap; /* Elles passent à la ligne si besoin */
+  }
+
+  .cellule {
+    width: 50%; /* Chaque cellule = moitié de la colonne → grille 2x2 au total */
+    aspect-ratio: 1 / 1; /* Toujours carrée */
+    padding: 15px;
+  }
+
+  /* La propriété "order" permet de réorganiser l'affichage
+     SANS changer le HTML. Plus le chiffre est petit, plus
+     l'élément apparaît en premier */
+  .cellule-jaune {
+    order: 1; /* S'affiche en 1er */
+  }
+  .cellule-img1 {
+    order: 2; /* S'affiche en 2ème */
+  }
+  .cellule-bleue {
+    order: 3; /* S'affiche en 3ème */
+  }
+  .cellule-img2 {
+    order: 4; /* S'affiche en 4ème */
+  }
+
+  .cellule-bleue {
+    gap: 10px; /* Encore moins d'espace sur mobile */
+  }
+
+  .footer {
+    height: 130px; /* Footer plus petit sur mobile */
+  }
+
+  .footer-texte {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,368 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #e7e7e7;
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.nav-logo {
+  width: 80px;
+  height: 130px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-right: 1px solid #000;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.nav-link {
+  color: #000;
+  text-decoration: none;
+  padding: 20px;
+  font-size: 16px;
+}
+
+.form-header {
+  border-top: 1px solid #000; /* Ligne horizontale AU-DESSUS du titre */
+  border-bottom: 1px solid #000; /* Ligne horizontale EN-DESSOUS du titre */
+  padding-left: 79px; /* Décale le contenu de 79px — correspond à la
+                                    largeur du logo pour que le titre s'aligne après lui */
+}
+
+.form-title {
+  border-left: 1px solid #000; /* Petite ligne verticale à gauche du titre */
+
+  padding-left: 20px; /* Espace entre la ligne et le texte */
+  padding-top: 10px;
+  padding-bottom: 20px;
+
+  /* clamp(MIN, IDEAL, MAX) : taille responsive automatique
+     - Minimum 3rem : jamais plus petit
+     - 10vw : idéalement 10% de la largeur de l'écran
+     - Maximum 8rem : jamais plus grand
+     Le titre grandit/rétrécit seul avec l'écran, sans media query */
+  font-size: clamp(3rem, 10vw, 8rem);
+
+  font-weight: 300; /* Police fine/légère malgré la grande taille */
+  line-height: 0.9; /* Lignes très serrées — effet typographique voulu */
+  letter-spacing: -2px; /* Lettres légèrement resserrées */
+}
+
+.layout {
+  display: flex; /* Les 3 colonnes (gauche, milieu, droite) se placent CÔTE À CÔTE */
+}
+
+/* Colonne gauche : barre verticale décorative */
+.col-gauche {
+  width: 81px; /* Largeur fixe, identique à celle du logo */
+  border-right: 1px solid #000; /* Ligne verticale qui prolonge la bordure du logo */
+  flex-shrink: 0; /* Interdit à cette colonne de rétrécir si la place manque */
+}
+
+/* Colonne centrale : contient le formulaire */
+.col-milieu {
+  flex: 1; /* Prend TOUT l'espace disponible entre les deux colonnes fixes */
+  border-right: 1px solid #000; /* Ligne verticale qui sépare le formulaire du summary */
+  padding: 0;
+}
+
+/* Colonne droite : résumé des informations */
+.col-droite {
+  width: 280px; /* Largeur fixe — ne grandit pas ni ne rétrécit */
+  flex-shrink: 0; /* Interdit à cette colonne de rétrécir */
+  font-size: 25px;
+}
+
+.col-label {
+  padding: 8px 12px; /* Espace autour du texte "form" et "Summary..." */
+  font-size: 25px;
+}
+
+/* ==========================
+   TITRES DE SECTION
+========================== */
+
+.section-titre {
+  margin-top: 60px; /* Grand espace AU-DESSUS pour aérer les sections */
+  margin-bottom: 50px; /* Grand espace EN-DESSOUS avant le premier champ */
+  color: #1754ad; /* Couleur bleue */
+  font-size: 16px;
+  font-weight: 400; /* Pas gras */
+
+  display: flex; /* Permet d'ajouter la ligne décorative à droite */
+  align-items: center; /* Ligne et texte alignés verticalement */
+
+  padding: 0 12px;
+}
+
+/* Ligne horizontale bleue qui s'étend après le texte du titre */
+.section-titre::after {
+  content: ""; /* Élément vide — juste pour la ligne */
+  flex: 1; /* Prend tout l'espace restant à droite du texte */
+  height: 1px;
+  background: #1754ad; /* Ligne bleue */
+  margin-left: 8px; /* Petit espace entre le texte et la ligne */
+}
+
+/* ==========================
+   CHAMPS
+========================== */
+
+.champ-label {
+  display: block; /* Le label prend toute la largeur (sinon il serait inline) */
+  font-size: 20px;
+  padding: 40px 12px 6px; /* Grand espace en haut pour séparer les champs entre eux */
+}
+
+.champ-input {
+  width: 100%; /* Le champ prend toute la largeur de sa colonne */
+  height: 53px; /* Hauteur fixe pour tous les champs */
+
+  border: none; /* Pas de bordure sur les côtés */
+  border-top: 1px solid #000; /* Ligne horizontale AU-DESSUS du champ */
+  border-bottom: 1px solid #000; /* Ligne horizontale EN-DESSOUS du champ */
+
+  background: transparent; /* Fond transparent — on voit le fond gris de la page */
+  padding-left: 12px; /* Espace à gauche du texte tapé par l'utilisateur */
+  font-size: 14px;
+
+  transition: background 0.2s ease; /* Animation fluide de 0.2s quand le fond change */
+}
+
+/* Quand la classe "filled" est ajoutée via JS : le fond devient jaune */
+.champ-input.filled {
+  background: #ffe600; /* Fond jaune pour indiquer que le champ est rempli */
+}
+
+/* Variante pour le textarea (bio) */
+.champ-textarea {
+  height: auto; /* Hauteur automatique selon le contenu (pas fixe comme les inputs) */
+  resize: vertical; /* L'utilisateur peut agrandir le textarea uniquement en hauteur */
+  padding-top: 12px;
+}
+
+/* ==========================
+   PHOTO
+========================== */
+
+.photo-upload {
+  height: 180px; /* Hauteur fixe de la zone d'upload */
+
+  display: flex;
+  justify-content: center; /* Contenu centré horizontalement */
+  align-items: center; /* Contenu centré verticalement */
+
+  border-top: 1px solid #000; /* Ligne au-dessus */
+  border-bottom: 1px solid #000; /* Ligne en-dessous */
+}
+
+/* ==========================
+   CHECKBOX
+========================== */
+
+.checkbox-ligne {
+  display: flex; /* La case et son label se placent côte à côte */
+  align-items: center; /* Alignés verticalement au centre */
+
+  border-top: 1px solid #000; /* Ligne au-dessus */
+  border-bottom: 1px solid #000; /* Ligne en-dessous */
+
+  height: 50px; /* Hauteur fixe de chaque ligne checkbox */
+}
+
+/* Quand deux checkbox-ligne se suivent, supprime la double bordure entre elles.
+   (La border-bottom de la 1ère + border-top de la 2ème = double trait sinon) */
+.checkbox-ligne + .checkbox-ligne {
+  border-top: none;
+}
+
+.checkbox {
+  margin-left: 12px; /* Espace à gauche de la case */
+  margin-right: 10px; /* Espace entre la case et le label */
+  flex-shrink: 0; /* La case ne rétrécit pas */
+}
+
+.checkbox-label {
+  font-size: 16px;
+  cursor: pointer; /* Le curseur devient une main au survol — indique que c'est cliquable */
+}
+
+/* ==========================
+   COLONNE DROITE / SUMMARY
+========================== */
+
+.col-droite .col-label {
+  font-size: 16px; /* Plus petit que le .col-label général */
+  padding: 8px 12px 20px; /* Plus d'espace en bas sous le titre "Summary..." */
+}
+
+.summary {
+  padding: 0 12px; /* Espace à gauche et droite de la liste */
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between; /* Label à gauche, valeur à droite */
+  border-bottom: 1px solid #ccc; /* Ligne grise sous chaque ligne du résumé */
+  padding: 8px 0;
+  font-size: 14px;
+}
+
+.summary-row dt {
+  color: #1754ad; /* Label en bleu */
+  font-weight: 400;
+}
+
+.summary-row dd {
+  text-align: right; /* Valeur alignée à droite */
+  color: #000;
+}
+
+.summary-bloc {
+  border-top: 1px solid #1754ad; /* Ligne bleue au-dessus du bloc */
+  border-bottom: 1px solid #1754ad; /* Ligne bleue en-dessous du bloc */
+  min-height: 200px; /* Hauteur minimale même si le bloc est vide */
+}
+
+.summary-note {
+  color: #1754ad;
+  font-size: 10px;
+  padding: 6px 10px;
+}
+
+/* ==========================
+   SUBMIT
+========================== */
+
+.submit-zone {
+  margin-top: 60px; /* Grand espace au-dessus du bouton */
+}
+
+.submit-btn {
+  width: 100%; /* Le bouton prend toute la largeur du formulaire */
+  height: 50px;
+
+  background: #000; /* Fond noir */
+  color: #fff; /* Texte blanc */
+
+  border: none;
+  font-size: 18px;
+  cursor: pointer; /* Curseur main au survol */
+}
+
+/* ==========================
+   RESPONSIVE — TABLETTE
+   S'active quand l'écran est ≤ 768px
+========================== */
+
+@media (max-width: 768px) {
+  .nav-logo {
+    width: 60px; /* Logo plus petit sur tablette */
+    height: 100px;
+    font-size: 15px;
+  }
+
+  .form-header {
+    padding-left: 60px; /* Suit la nouvelle largeur du logo */
+  }
+
+  .layout {
+    flex-wrap: wrap; /* Les colonnes peuvent passer à la ligne si besoin */
+  }
+
+  .col-gauche {
+    width: 60px; /* La colonne décorative rétrécit avec le logo */
+  }
+
+  .col-milieu {
+    flex: 1;
+    min-width: 0; /* Empêche le formulaire de déborder de son conteneur */
+  }
+
+  .col-droite {
+    width: 100%; /* Le summary prend toute la largeur en bas */
+    border-top: 1px solid #000; /* Ligne de séparation au-dessus */
+    display: flex;
+    flex-direction: row; /* Les éléments du summary se placent côte à côte */
+    flex-wrap: wrap; /* Ils passent à la ligne si besoin */
+  }
+
+  .col-droite .col-label {
+    width: 100%; /* Le titre "Summary..." prend toute la largeur */
+  }
+
+  .summary-bloc {
+    flex: 1 1 200px; /* Le bloc peut grandir/rétrécir, minimum 200px de large */
+    min-height: 120px;
+  }
+}
+
+/* ==========================
+   RESPONSIVE — MOBILE
+   S'active quand l'écran est ≤ 480px
+========================== */
+
+@media (max-width: 480px) {
+  .nav-logo {
+    width: 50px; /* Logo encore plus petit sur smartphone */
+    height: 90px;
+    font-size: 13px;
+  }
+
+  .nav-link {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .form-header {
+    padding-left: 50px; /* Suit la nouvelle largeur du logo */
+  }
+
+  .form-title {
+    padding-left: 15px;
+    padding-bottom: 15px;
+  }
+
+  .col-gauche {
+    display: none; /* La colonne décorative gauche DISPARAÎT sur mobile
+                      pour gagner de la place */
+  }
+
+  .col-milieu {
+    width: 100%; /* Le formulaire prend toute la largeur */
+    border-right: none; /* On supprime la bordure droite qui n'a plus de sens */
+  }
+
+  .col-droite {
+    flex-direction: column; /* Les éléments du summary s'empilent verticalement */
+  }
+
+  .summary-bloc {
+    min-height: 100px; /* Un peu moins de hauteur sur mobile */
+  }
+
+  .section-titre {
+    margin-top: 40px; /* Moins d'espace au-dessus des titres de section */
+    font-size: 14px;
+  }
+
+  .submit-btn {
+    font-size: 16px;
+    height: 44px; /* Bouton un peu moins haut sur mobile */
+  }
+}
